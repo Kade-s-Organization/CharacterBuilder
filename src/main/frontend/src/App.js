@@ -28,9 +28,8 @@ export default function App() {
           className="app"
           style={{
             backgroundImage: backgroundImage,
-            backgroundSize: "900px 200px",
+            backgroundSize: "660px 660px",
             backgroundRepeat: "repeat",
-            backgroundPosition: "center",
           }}
         >
           {authenticated ? <Sidebar /> : <></>}
