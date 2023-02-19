@@ -11,12 +11,16 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
 import img from "./assets/loginBackground.png";
 import { useSelector } from "react-redux";
+import LandingPage from "./scenes/landingPage";
 
 export default function App() {
   const authenticated = useSelector((state) => state.auth.token);
   const [theme, colorMode] = useMode();
   const location = useLocation();
-  const backgroundImage = location.pathname === "/login" ? `url(${img})` : "";
+  const backgroundImage =
+    location.pathname === "/login" || location.pathname === "/"
+      ? `url(${img})`
+      : "";
 
   return (
     // todo get the email in this class and pass to header as prop, and convert to typescript
@@ -32,7 +36,11 @@ export default function App() {
             backgroundRepeat: "repeat",
           }}
         >
-          {authenticated ? <Sidebar /> : <></>}
+          {location.pathname === "/login" || location.pathname === "/" ? (
+            <></>
+          ) : (
+            <Sidebar />
+          )}
           <main className="content">
             <Topbar />
             <Routes>
@@ -40,8 +48,10 @@ export default function App() {
                 path="/login"
                 element={authenticated ? <Navigate to="/" /> : <Login />}
               />
+              <Route path="/" element={<LandingPage />} />
+              <Route path="/dashboard" element={<Dashboard />} />
               <Route element={<ProtectRoutes />}>
-                <Route path="/" element={<Dashboard />} />
+                {/* Where things like account and character list go */}
               </Route>
               <Route path="*" element={<NotFound />} />
             </Routes>

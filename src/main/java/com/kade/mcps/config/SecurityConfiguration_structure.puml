@@ -1,0 +1,184 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": true,
+    "cutInterfaceStructures": true,
+    "cutDataStructures": true,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 3,
+    "backwardDepth": 3,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "com.kade.mcps.config.SecurityConfiguration",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_3284055 { 
+   	label=kade
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_1376761520 { 
+   	label=mcps
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   CustomAuthorizationFilter1766161757[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)CustomAuthorizationFilter</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   jwtTokenProvider: JwtTokenProvider [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   userDetailsService: UserDetailsService [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" ># doFilterInternal(request: HttpServletRequest, response: HttpServletResponse, filterChain: FilterChain)</TD></TR>
+<TR><TD ALIGN="LEFT" >- getTokenFromRequest(request: HttpServletRequest): String</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+JwtAuthenticationEntryPoint900927403[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)JwtAuthenticationEntryPoint</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ commence(request: HttpServletRequest, response: HttpServletResponse, authException: AuthenticationException)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+JwtTokenProvider900927403[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)JwtTokenProvider</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   jwtExpirationDateInMs: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   refreshExpirationDateInMs: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   secret: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >- createAccessToken(claims: Map&lt;String, Object&gt;, subject: String): String</TD></TR>
+<TR><TD ALIGN="LEFT" >- createRefreshToken(claims: Map&lt;String, Object&gt;, subject: String): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ extractAllClaims(token: String): Claims</TD></TR>
+<TR><TD ALIGN="LEFT" >+ extractClaim(token: String, claimsResolver: Function&lt;Claims, T&gt;): T</TD></TR>
+<TR><TD ALIGN="LEFT" >+ extractExpiration(token: String): Date</TD></TR>
+<TR><TD ALIGN="LEFT" >+ extractUsername(token: String): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ generateAccessToken(userDetails: UserDetails): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ generateRefreshToken(userDetails: UserDetails): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getRolesFromToken(token: String): List&lt;SimpleGrantedAuthority&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getUsernameFromToken(token: String): String</TD></TR>
+<TR><TD ALIGN="LEFT" >- isTokenExpired(token: String): Boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ validateToken(authToken: String): boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+SecurityConfiguration1846461843[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)SecurityConfiguration</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   authenticationEntryPoint: JwtAuthenticationEntryPoint [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   authenticationProvider: AuthenticationProvider [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   customAuthorizationFilter: CustomAuthorizationFilter [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jwtTokenProvider: JwtTokenProvider [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ corsFilter(): CorsFilter</TD></TR>
+<TR><TD ALIGN="LEFT" >+ filterChain(http: HttpSecurity): SecurityFilterChain</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+} 
+
+'edges    
+CustomAuthorizationFilter1766161757 -> JwtTokenProvider900927403[label="jwtTokenProvider
+[0..1]"];
+SecurityConfiguration1846461843 -> CustomAuthorizationFilter1766161757[label="customAuthorizationFilter
+[0..1]"];
+SecurityConfiguration1846461843 -> JwtAuthenticationEntryPoint900927403[label="authenticationEntryPoint
+[0..1]"];
+SecurityConfiguration1846461843 -> JwtTokenProvider900927403[label="jwtTokenProvider
+[0..1]"];
+    
+}
+@enduml

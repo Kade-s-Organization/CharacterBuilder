@@ -5,7 +5,7 @@ import { logout } from "../../store/reducers/auth";
 import axios from "../../api/axios";
 import { Box } from "@mui/material";
 
-export default function Home() {
+export default function LandingPage() {
   const [greeting, setGreeting] = useState("");
   const token = useSelector((state) => state.auth.token);
   const dispatch = useDispatch();
@@ -21,17 +21,10 @@ export default function Home() {
     setGreeting(res.data);
   };
 
-  const handleLogout = () => {
-    dispatch(logout());
-    navigate("/login");
-  };
-
   return (
     <Box m={3}>
-      <div>Dashboard Home Page</div>
-      <button onClick={handleLogout}>Logout</button>
-      <button onClick={getGreeting}>Display Greeting:</button>
-      {greeting !== "" && <h1>{greeting}</h1>}
+      <div>Landing Page Page</div>
+      <button onClick={() => navigate("/dashboard")}>Dashboard</button>
     </Box>
   );
 }

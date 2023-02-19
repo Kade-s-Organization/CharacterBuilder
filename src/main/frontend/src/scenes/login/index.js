@@ -71,8 +71,13 @@ export default function Login() {
       padding={5}
       borderRadius={5}
       boxShadow={10}
-      border={`1px solid ${theme.palette.primary.main}`}
+      border={`1px solid ${theme.palette.primary.light}`}
       backgroundColor={theme.palette.background.lightPaper}
+      sx={{
+        "& .MuiInputBase-root": {
+          backgroundColor: `${theme.palette.background.darkPaper} !important`,
+        },
+      }}
     >
       <p
         ref={errRef}
@@ -109,7 +114,7 @@ export default function Login() {
         variant="contained"
         color="primary"
         onClick={handleSubmit}
-        style={{ backgroundColor: theme.palette.primary.main }}
+        style={{ backgroundColor: theme.palette.primary.dark }}
       >
         Login
       </Button>

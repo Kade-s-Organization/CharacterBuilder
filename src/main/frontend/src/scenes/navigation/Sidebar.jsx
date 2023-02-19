@@ -35,7 +35,7 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
 
 const Sidebar = () => {
   const theme = useTheme();
-  const email = useSelector((state) => state.auth.email);
+  const user = useSelector((state) => state.auth.user);
   const colors = tokens;
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
@@ -59,7 +59,7 @@ const Sidebar = () => {
           color: `inherit !important`,
         },
         "& .pro-menu-item.active": {
-          color: `${theme.palette.primary.dark} !important`,
+          color: `${theme.palette.primary.main} !important`,
         },
       }}
     >
@@ -96,7 +96,7 @@ const Sidebar = () => {
             )}
           </MenuItem>
 
-          {!isCollapsed && (
+          {!isCollapsed && user !== null && (
             <Box mb="25px">
               <Box textAlign="center">
                 <Typography

@@ -32,13 +32,9 @@ const Topbar = () => {
       px={3}
       display="flex"
       justifyContent="space-between"
-      backgroundColor={theme.palette.background.default}
+      backgroundColor={theme.palette.primary.dark}
       boxShadow={location.pathname === "/login" ? 5 : 0}
-      borderBottom={
-        location.pathname === "/login"
-          ? `2px solid ${theme.palette.primary.dark}`
-          : 0
-      }
+      borderBottom={`2px solid ${theme.palette.primary.light}`}
     >
       <Box
         display="flex"

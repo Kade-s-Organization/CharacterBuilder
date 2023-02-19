@@ -17,15 +17,15 @@ export const tokens = {
     900: "#ffffff",
   },
   indigo: {
-    100: "#0b0e0f",
-    200: "#171b1e",
-    300: "#22292d",
-    400: "#2e363c",
+    100: "#d7dadb",
+    200: "#b0b4b7",
+    300: "#888f93",
+    400: "#61696f",
     500: "#39444b",
-    600: "#61696f",
-    700: "#888f93",
-    800: "#b0b4b7",
-    900: "#d7dadb",
+    600: "#2e363c",
+    700: "#22292d",
+    800: "#171b1e",
+    900: "#0b0e0f",
   },
   success: {
     100: "#e6f0db",
@@ -103,9 +103,9 @@ export const themeSettings = (mode) => {
       ...(mode === "dark"
         ? {
             primary: {
-              light: colors.red[200],
-              main: colors.red[500],
-              dark: colors.red[800],
+              light: colors.blue[200],
+              main: colors.blue[500],
+              dark: colors.blue[700],
             },
             info: {
               main: colors.blue[600],
@@ -124,9 +124,9 @@ export const themeSettings = (mode) => {
               light: colors.danger[900],
             },
             background: {
-              default: colors.red[700],
-              lightPaper: colors.red[800],
-              darkPaper: colors.red[900],
+              default: colors.indigo[600],
+              lightPaper: colors.indigo[700],
+              darkPaper: colors.indigo[800],
             },
             text: {
               default: colors.grey[900],
