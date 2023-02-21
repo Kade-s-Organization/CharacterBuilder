@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.security</groupId>
-    <artifactId>demo</artifactId>
+    <artifactId>characterbuilder</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>Marietta College Parking System</name>
-    <description>Used to manage parking permits and citations at Marietta College</description>
+    <name>D&amp;D Character Builder</name>
+    <description>Used to create D&amp;D Characters from a variety of sources</description>
     <properties>
         <java.version>17</java.version>
     </properties>

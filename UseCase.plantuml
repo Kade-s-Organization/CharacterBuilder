@@ -1,0 +1,11 @@
+@startuml
+left to right direction
+actor user
+rectangle "Character Builder" {
+user -- (Create a Character)
+(Create a Character) -- (Edit a Character) : extends
+(Create a Character) -- (Export a Character) : extends
+(Create a Character) -- (Save a Character) : extends
+(Save a Character) -- (Log in) : includes
+}
+@enduml

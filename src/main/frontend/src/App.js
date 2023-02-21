@@ -11,16 +11,20 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
 import img from "./assets/loginBackground.png";
 import { useSelector } from "react-redux";
+import LandingPage from "./scenes/landingPage";
 
 export default function App() {
   const authenticated = useSelector((state) => state.auth.token);
   const [theme, colorMode] = useMode();
   const location = useLocation();
-  const backgroundImage = location.pathname === "/login" ? `url(${img})` : "";
+  const backgroundImage =
+    location.pathname === "/login" || location.pathname === "/"
+      ? `url(${img})`
+      : "";
 
   return (
     // todo get the email in this class and pass to header as prop, and convert to typescript
-    // TODO use redux rather than contexts for the color mode
+    // TODO use redux rather than contexts for the color mode. test
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
@@ -28,12 +32,15 @@ export default function App() {
           className="app"
           style={{
             backgroundImage: backgroundImage,
-            backgroundSize: "900px 200px",
+            backgroundSize: "660px 660px",
             backgroundRepeat: "repeat",
-            backgroundPosition: "center",
           }}
         >
-          {authenticated ? <Sidebar /> : <></>}
+          {location.pathname === "/login" || location.pathname === "/" ? (
+            <></>
+          ) : (
+            <Sidebar />
+          )}
           <main className="content">
             <Topbar />
             <Routes>
@@ -41,8 +48,10 @@ export default function App() {
                 path="/login"
                 element={authenticated ? <Navigate to="/" /> : <Login />}
               />
+              <Route path="/" element={<LandingPage />} />
+              <Route path="/dashboard" element={<Dashboard />} />
               <Route element={<ProtectRoutes />}>
-                <Route path="/" element={<Dashboard />} />
+                {/* Where things like account and character list go */}
               </Route>
               <Route path="*" element={<NotFound />} />
             </Routes>
