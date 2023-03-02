@@ -12,8 +12,7 @@ import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import SearchIcon from "@mui/icons-material/Search";
 import styled from "@emotion/styled";
 import { useSelector } from "react-redux";
-
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Topbar = () => {
   const location = useLocation();
@@ -41,10 +40,13 @@ const Topbar = () => {
         maxHeight={50}
         sx={{ width: "50%", objectFit: "contain" }}
       >
-        <StyledImg
-          src={theme.palette.mode === "dark" ? logo : darkLogo}
-          alt="logo"
-        />
+        {/* here is a link to / */}
+        <Link to="/">
+          <StyledImg
+            src={theme.palette.mode === "dark" ? logo : darkLogo}
+            alt="logo"
+          />
+        </Link>
       </Box>
 
       {/* ICONS */}

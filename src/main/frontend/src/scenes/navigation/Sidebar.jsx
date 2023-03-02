@@ -126,21 +126,21 @@ const Sidebar = () => {
               Data
             </Typography>
             <Item
-              title="Manage Team"
+              title="Race"
               to="/team"
               icon={<PeopleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="Contacts Information"
+              title="Class"
               to="/contacts"
               icon={<ContactsOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="Invoices Balances"
+              title="Abilities"
               to="/invoices"
               icon={<ReceiptOutlinedIcon />}
               selected={selected}
@@ -151,14 +151,14 @@ const Sidebar = () => {
               Pages
             </Typography>
             <Item
-              title="Profile Form"
+              title="Description"
               to="/form"
               icon={<PersonOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="Calendar"
+              title="Equipment"
               to="/calendar"
               icon={<CalendarTodayOutlinedIcon />}
               selected={selected}

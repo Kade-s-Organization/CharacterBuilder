@@ -46,7 +46,9 @@ export default function App() {
             <Routes>
               <Route
                 path="/login"
-                element={authenticated ? <Navigate to="/" /> : <Login />}
+                element={
+                  authenticated ? <Navigate to="/dashboard" /> : <Login />
+                }
               />
               <Route path="/" element={<LandingPage />} />
               <Route path="/dashboard" element={<Dashboard />} />

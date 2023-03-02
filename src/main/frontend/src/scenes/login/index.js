@@ -38,7 +38,7 @@ export default function Login() {
       dispatch(setCredentials({ ...userData, user }));
       setUser("");
       setPwd("");
-      navigate("/");
+      navigate("/dashboard");
     } catch (err) {
       if (!err?.originalStatus) {
         // isLoading: true until timeout occurs

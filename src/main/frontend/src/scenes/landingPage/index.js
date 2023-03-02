@@ -1,13 +1,15 @@
 import React from "react";
 import styled from "@emotion/styled";
+import { useNavigate } from "react-router-dom";
 
 const Hero = styled.div`
-  background-image: url("banner.png");
+  background-image: linear-gradient(120deg, #5e9e95 0%, #2187cd 100%);
   background-size: cover;
   background-position: center;
-  height: 500px;
+  padding: 4rem 10rem 4rem 10rem;
+  height: 100vh;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
   text-align: center;
@@ -15,12 +17,12 @@ const Hero = styled.div`
 `;
 const Title = styled.h1`
   color: white;
-  font-size: 4rem; ;
+  font-size: 3rem; ;
 `;
 
 const Description = styled.p`
   color: white;
-  font-size: 2rem; ;
+  font-size: 1.5rem; ;
 `;
 
 const ButtonContainer = styled.div`
@@ -52,15 +54,34 @@ const Button = styled.button`
 `;
 
 const LandingPage = () => {
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    navigate("/login");
+  };
+
+  const handleRegister = () => {
+    navigate("/register");
+  };
+
+  const handleContinueAsGuest = () => {
+    navigate("/dashboard");
+  };
   return (
     <div>
       <Hero>
-        <Title>Character Builder</Title>
-        <Description>Lorem Ipsom Blah Blah Blah</Description>
+        <Title>Character Builder - The Ultimate Tool for D&D Players</Title>
+        <Description>
+          Enjoy the benefits of an interactive character sheet while unlocking
+          all the popular class variants that are typically locked behind a
+          paywall. Our application takes data from 5e.tools and presents it in a
+          D&D Beyond-like interface, giving you the best of both worlds. Start
+          playing your favorite class variants without limitations today!
+        </Description>
         <ButtonContainer>
-          <Button>Login</Button>
-          <Button>Create Account</Button>
-          <Button>Create Character as Guest</Button>
+          <Button onClick={handleLogin}>Login</Button>
+          <Button onClick={handleRegister}>Register</Button>
+          <Button onClick={handleContinueAsGuest}>Continue as Guest</Button>
         </ButtonContainer>
       </Hero>
     </div>
