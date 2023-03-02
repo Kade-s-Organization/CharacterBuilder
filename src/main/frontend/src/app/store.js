@@ -1,8 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
-import rootReducer from "./reducers";
 import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
-import { apiSlice } from "./reducers/api";
+import { apiSlice } from "../features/api/api";
+import { combineReducers } from "redux";
+import auth from "../features/auth/auth";
+
+
+const rootReducer = combineReducers({
+  auth,
+  [apiSlice.reducerPath]: apiSlice.reducer,
+});
 
 // modify the 'storage' key to use a different storage engine
 // add whitelist or blacklist keys to persist only a subset of the state

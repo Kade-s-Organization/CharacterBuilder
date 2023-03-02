@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { setCredentials, logout } from "./auth";
+import { setCredentials, logout } from "../auth/auth";
 
 // this will be used to create the base url for all requests and add the token to the header
 const baseQuery = fetchBaseQuery({

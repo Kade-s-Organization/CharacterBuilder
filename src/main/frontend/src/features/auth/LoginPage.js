@@ -2,8 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, Button, Typography, useTheme, TextField } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { setCredentials } from "../../store/reducers/auth";
-import { useLoginMutation } from "../../store/reducers/auth";
+import { setCredentials } from "./auth";
+import { useLoginMutation } from "./auth";
 
 export default function Login() {
   const theme = useTheme();

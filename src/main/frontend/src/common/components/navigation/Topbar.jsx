@@ -1,6 +1,6 @@
 import { Box, IconButton, useTheme } from "@mui/material";
 import { useContext } from "react";
-import { ColorModeContext, tokens } from "../../theme";
+import { ColorModeContext, tokens } from  "../../../theme";
 import logo from "../../assets/logo.svg";
 import darkLogo from "../../assets/darkLogo.svg";
 import InputBase from "@mui/material/InputBase";

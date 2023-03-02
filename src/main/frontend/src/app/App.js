@@ -1,17 +1,17 @@
 import { useState } from "react";
 import { Route, Routes, Navigate, useLocation } from "react-router-dom";
-import { ProtectRoutes } from "./components/ProtectedRoutes";
-import Dashboard from "./scenes/dashboard";
-import Login from "./scenes/login";
-import NotFound from "./scenes/notFound";
+import { ProtectRoutes } from "../common/components/ProtectedRoutes";
+import Dashboard from "../common/pages/dashboard";
+import Login from "../features/auth/LoginPage";
+import NotFound from "../common/pages/notFound";
 import { Box, dividerClasses, Typography } from "@mui/material";
-import Topbar from "./scenes/navigation/Topbar";
-import Sidebar from "./scenes/navigation/Sidebar";
+import Topbar from "../common/components/navigation/Topbar";
+import Sidebar from "../common/components/navigation/Sidebar";
 import { CssBaseline, ThemeProvider } from "@mui/material";
-import { ColorModeContext, useMode } from "./theme";
-import img from "./assets/loginBackground.png";
+import { ColorModeContext, useMode } from "../theme";
+import img from "../common/assets/loginBackground.png";
 import { useSelector } from "react-redux";
-import LandingPage from "./scenes/landingPage";
+import LandingPage from "../common/pages/landingPage";
 
 export default function App() {
   const authenticated = useSelector((state) => state.auth.token);
