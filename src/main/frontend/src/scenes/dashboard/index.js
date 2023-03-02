@@ -59,11 +59,13 @@ export default function Home() {
     <Box m={3} p={3}>
       <div>Dashboard Home Page</div>
       {authenticated ? (
-        <Button onClick={handleLogout}>Logout</Button>
+        <>
+          <Button onClick={handleLogout}>Logout</Button>
+          <Button onClick={getGreeting}>Display Greeting:</Button>
+        </>
       ) : (
         <Button onClick={handleLogin}>Login</Button>
       )}
-      <Button onClick={getGreeting}>Display Greeting:</Button>
       {greeting !== "" && <h1>{greeting}</h1>}
     </Box>
   );
