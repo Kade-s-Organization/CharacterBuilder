@@ -1,5 +1,6 @@
 package com.characterBuilder.controller;
 
+import com.characterBuilder.payload.GreetingResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,12 +13,14 @@ import java.security.Principal;
 @RequestMapping("/api/v1/greetings")
 public class GreetingsController {
     @GetMapping
-    public ResponseEntity<String> sayHello() {
-        return ResponseEntity.ok("Hello from our API");
+    public ResponseEntity<GreetingResponse> sayHello() {
+        GreetingResponse response = new GreetingResponse("Hello from our API");
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/say-good-bye")
-    public ResponseEntity<String> sayGoodbye() {
-        return ResponseEntity.ok("Goodbye from our API");
+    public ResponseEntity<GreetingResponse> sayGoodbye() {
+        GreetingResponse response = new GreetingResponse("Goodbye from our API");
+        return ResponseEntity.ok(response);
     }
 }

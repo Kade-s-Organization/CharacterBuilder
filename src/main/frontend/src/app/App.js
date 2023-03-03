@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Route, Routes, Navigate, useLocation } from "react-router-dom";
 import { ProtectRoutes } from "../common/components/ProtectedRoutes";
-import Dashboard from "../common/pages/dashboard";
+import Dashboard from "../features/dashboard";
 import Login from "../features/auth/LoginPage";
 import NotFound from "../common/pages/notFound";
 import { Box, dividerClasses, Typography } from "@mui/material";

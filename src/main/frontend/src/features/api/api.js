@@ -21,8 +21,9 @@ const baseQuery = fetchBaseQuery({
 
 const baseQueryWithReauth = async (args, api, extraOptions) => {
   const result = await baseQuery(args, api, extraOptions);
+  console.log("result", result);
   // 403 is returned when the token is invalid/expired, 401 is returned when no token is present
-  if (result?.error?.originalStatus === 403) {
+  if (result?.error?.status === 403) {
     console.log("sending refresh token request");
     // nullify the token in the state before sending the refresh token request so that baseQuery knows to send the refresh token rather than the old token
     api.dispatch(setCredentials({ token: null }));

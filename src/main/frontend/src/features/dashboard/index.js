@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom/dist";
 import styled from "@emotion/styled";
 import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../../../features/auth/auth";
+import { logout } from "../auth/auth";
 import { Box } from "@mui/material";
+import { useGetGreetingsQuery } from "./greetings";
 
 //chatgpt made this i used it on the landing page
 const Button = styled.button`
@@ -35,16 +36,12 @@ export default function Home() {
   const token = useSelector((state) => state.auth.token);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { data: greetings, isLoading, isError } = useGetGreetingsQuery();
+  
 
-  // const getGreeting = async () => {
-  //   const jwt = token;
-  //   const res = await axios.get("/api/v1/greetings", {
-  //     headers: {
-  //       Authorization: `Bearer ${jwt}`,
-  //     },
-  //   });
-  //   setGreeting(res.data);
-  // };
+  const handleGetGreeting = () => {
+    setGreeting("Greeting: " + greetings.message);
+  };
 
   const handleLogout = () => {
     dispatch(logout());
@@ -60,7 +57,7 @@ export default function Home() {
       {authenticated ? (
         <>
           <Button onClick={handleLogout}>Logout</Button>
-          <Button>Display Greeting:</Button>
+          <Button onClick={handleGetGreeting}>Display Greeting:</Button>
         </>
       ) : (
         <Button onClick={handleLogin}>Login</Button>
