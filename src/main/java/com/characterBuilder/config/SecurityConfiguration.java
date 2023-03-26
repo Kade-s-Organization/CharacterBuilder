@@ -4,6 +4,7 @@ import com.characterBuilder.filter.CustomAuthorizationFilter;
 import com.characterBuilder.security.JwtAuthenticationEntryPoint;
 import com.characterBuilder.security.JwtTokenProvider;
 import com.characterBuilder.filter.CustomAuthenticationFilter;
+import com.characterBuilder.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -91,7 +92,6 @@ public class SecurityConfiguration {
 @RequiredArgsConstructor
 class JwtConfigurer extends AbstractHttpConfigurer<JwtConfigurer, HttpSecurity> {
     private final JwtTokenProvider jwtTokenProvider;
-
     public void configure(HttpSecurity builder) {
         AuthenticationManager authenticationManager = builder.getSharedObject(AuthenticationManager.class);
         CustomAuthenticationFilter customAuthenticationFilter = new CustomAuthenticationFilter(authenticationManager, jwtTokenProvider);

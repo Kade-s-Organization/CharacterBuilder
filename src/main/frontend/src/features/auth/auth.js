@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { apiSlice } from "./api";
+import { apiSlice } from "../api/api";
 
 const authSlice = createSlice({
   name: "auth",
@@ -36,7 +36,14 @@ export const authApiAlice = apiSlice.injectEndpoints({
         body: { ...credentials },
       }),
     }),
+    register: builder.mutation({
+      query: (userData) => ({
+        url: "/api/v1/auth/register",
+        method: "POST",
+        body: { ...userData },
+      }),
+    }),
   }),
 });
 
-export const { useLoginMutation } = authApiAlice;
+export const { useLoginMutation, useRegisterMutation } = authApiAlice;

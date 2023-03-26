@@ -1,5 +1,6 @@
 package com.characterBuilder.service.impl;
 
+import com.characterBuilder.entity.Role;
 import com.characterBuilder.repository.UserRepository;
 import com.characterBuilder.security.JwtTokenProvider;
 import com.characterBuilder.entity.User;
@@ -8,10 +9,17 @@ import com.characterBuilder.service.AuthService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.util.HashMap;
+import java.util.Map;
 
 // https://www.javainuse.com/webseries/spring-security-jwt/chap7
 @Service
@@ -22,20 +30,6 @@ public class AuthServiceImpl implements AuthService {
     private final JwtTokenProvider jwtTokenProvider;
     private final AuthenticationManager authenticationManager;
 
-//    public String register(RegisterRequest request) {
-//        var user = User.builder()
-//                .firstName(request.getFirstname())
-//                .lastName(request.getLastname())
-//                .username(request.getEmail())
-//                .password(passwordEncoder.encode(request.getPassword()))
-//                .role(Role.USER)
-//                .build();
-//        repository.save(user);
-//        var jwtToken = jwtTokenProvider.generateAccessToken(user);
-//        return AuthenticationResponse.builder()
-//                .token(jwtToken)
-//                .build();
-//    }
 
     @Override
     public String authenticate(AuthRequestDto request) {

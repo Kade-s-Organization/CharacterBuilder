@@ -1,24 +1,25 @@
 import { useState } from "react";
 import { Route, Routes, Navigate, useLocation } from "react-router-dom";
-import { ProtectRoutes } from "./components/ProtectedRoutes";
-import Dashboard from "./scenes/dashboard";
-import Login from "./scenes/login";
-import NotFound from "./scenes/notFound";
+import { ProtectRoutes } from "../common/components/ProtectedRoutes";
+import Dashboard from "../features/dashboard";
+import Login from "../features/auth/LoginPage";
+import NotFound from "../common/pages/notFound";
 import { Box, dividerClasses, Typography } from "@mui/material";
-import Topbar from "./scenes/navigation/Topbar";
-import Sidebar from "./scenes/navigation/Sidebar";
+import Topbar from "../common/components/navigation/Topbar";
+import Sidebar from "../common/components/navigation/Sidebar";
 import { CssBaseline, ThemeProvider } from "@mui/material";
-import { ColorModeContext, useMode } from "./theme";
-import img from "./assets/loginBackground.png";
+import { ColorModeContext, useMode } from "../theme";
+import img from "../common/assets/loginBackground.png";
 import { useSelector } from "react-redux";
-import LandingPage from "./scenes/landingPage";
+import LandingPage from "../common/pages/landingPage";
+import Register from "features/auth/RegisterPage";
 
 export default function App() {
   const authenticated = useSelector((state) => state.auth.token);
   const [theme, colorMode] = useMode();
   const location = useLocation();
   const backgroundImage =
-    location.pathname === "/login" || location.pathname === "/"
+    location.pathname === "/login" || location.pathname === "/" || location.pathname === "/register"
       ? `url(${img})`
       : "";
 
@@ -36,7 +37,7 @@ export default function App() {
             backgroundRepeat: "repeat",
           }}
         >
-          {location.pathname === "/login" || location.pathname === "/" ? (
+          {location.pathname === "/login" || location.pathname === "/" || location.pathname === "/register" ? (
             <></>
           ) : (
             <Sidebar />
@@ -46,7 +47,15 @@ export default function App() {
             <Routes>
               <Route
                 path="/login"
-                element={authenticated ? <Navigate to="/" /> : <Login />}
+                element={
+                  authenticated ? <Navigate to="/dashboard" /> : <Login />
+                }
+              />
+              <Route
+                path="/register"
+                element={
+                  authenticated ? <Navigate to="/dashboard" /> : <Register />
+                }
               />
               <Route path="/" element={<LandingPage />} />
               <Route path="/dashboard" element={<Dashboard />} />

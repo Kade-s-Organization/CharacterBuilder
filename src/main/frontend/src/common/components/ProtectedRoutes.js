@@ -1,6 +1,6 @@
 import { Outlet, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { selectCurrentToken } from "../store/reducers/auth";
+import { selectCurrentToken } from "../../features/auth/auth";
 
 export const ProtectRoutes = () => {
   const token = useSelector(selectCurrentToken);
