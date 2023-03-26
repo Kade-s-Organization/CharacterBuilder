@@ -7,6 +7,7 @@ import { useRegisterMutation } from "./auth";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
+import { tokens } from "../../theme";
 
 export default function Register() {
   const theme = useTheme();
@@ -182,10 +183,22 @@ export default function Register() {
               color="primary"
               type="submit"
               disabled={isSubmitting || isLoading}
-              style={{ backgroundColor: theme.palette.primary.dark }}
+              fullWidth
+              style={{
+                backgroundColor: theme.palette.primary.dark,
+                marginBottom: theme.spacing(2),
+              }}
             >
               {isSubmitting ? "Loading" : "Register"}
             </Button>
+            <Typography
+              variant="body2"
+              align="center"
+              style={{ marginTop: "10px", cursor: "pointer", color: theme.palette.text }}
+              onClick={() => navigate("/login")}
+            >
+              Have an account? <span style={{ textDecoration: "underline", color: theme.palette.primary.main }}>Sign in</span>
+            </Typography>
           </Form>
         )}
       </Formik>
