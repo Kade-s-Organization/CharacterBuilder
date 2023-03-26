@@ -83,6 +83,15 @@ public class JwtTokenProvider {
         return createRefreshToken(claims, userDetails.getUsername());
     }
 
+    public Map<String, String> getTokensFromUserDetails(UserDetails userDetails) {
+        String access_token = generateAccessToken(userDetails);
+        String refresh_token = generateRefreshToken(userDetails);
+        Map<String, String> tokens = new HashMap<>();
+        tokens.put("accessToken", access_token);
+        tokens.put("refreshToken", refresh_token);
+        return tokens;
+    }
+
     private String createAccessToken(Map<String, Object> claims, String subject) {
         // Expires in 10 hours
         return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))

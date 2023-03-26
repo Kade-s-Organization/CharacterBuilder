@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Button, Typography, useTheme, TextField } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "./auth";
+import { useLoginMutation } from "./auth";
 import { useRegisterMutation } from "./auth";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -13,32 +14,37 @@ export default function Register() {
   const [register, { isLoading }] = useRegisterMutation();
   const dispatch = useDispatch();
 
-  const handleSubmit = async (values, { setSubmitting, setErrors }) => {
+  const handleSubmit = async (values, { setSubmitting, setStatus }) => {
     try {
-      await register({
+      const userData = await register({
         username: values.email,
         password: values.password,
         firstName: values.firstName,
         lastName: values.lastName,
         matchingPassword: values.matchingPassword,
-        role: "USER"
-      });
-      navigate("/dashboard");
+        role: "USER",
+      }).unwrap();
+
+      if (userData.error) {
+        throw userData.error;
+      }
+      dispatch(setCredentials({ ...userData, user: values.email }));
+      navigate(-1);
     } catch (err) {
-        console.log(JSON.stringify(err));
-        if (!err?.status) {
-          setErrors({ general: "No Server Response" });
-        } else if (err.status === 400) {
-          setErrors({ general: "Missing Username or Password" });
-        } else if (err.status === 401) {
-          setErrors({ general: "Unauthorized" });
-        } else if (err.status === 404) {
-          setErrors({ general: "Resource not found" });
-        } else if (err.status === 409) {
-          setErrors({ general: "User already exists" });
-        } else {
-          setErrors({ general: "Registration Failed" });
-        }
+      console.log(JSON.stringify(err));
+      if (!err?.status) {
+        setStatus("no Server Response");
+      } else if (err.status === 400) {
+        setStatus("400: Missing Username or Password");
+      } else if (err.status === 401) {
+        setStatus("401: Unauthorized");
+      } else if (err.status === 404) {
+        setStatus("404: Resource not found");
+      } else if (err.status === 403) {
+        setStatus("403: Username already taken");
+      } else {
+        setStatus("Registration Failed");
+      }
     }
     setSubmitting(false);
   };
@@ -83,7 +89,7 @@ export default function Register() {
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        {({ isSubmitting }) => (
+        {({ isSubmitting, status }) => (
           <Form>
             <Typography variant="h4" align="center" gutterBottom>
               Register
@@ -126,57 +132,63 @@ export default function Register() {
               <ErrorMessage
                 name="matchingPassword"
                 component="div"
-className="errmsg"
-/>
-</Box>
-<Box mb={2}>
-<Field
-             as={TextField}
-             fullWidth
-             variant="outlined"
-             type="text"
-             label="First Name"
-             name="firstName"
-           />
-<ErrorMessage
-             name="firstName"
-             component="div"
-             className="errmsg"
-           />
-</Box>
-<Box mb={2}>
-<Field
-             as={TextField}
-             fullWidth
-             variant="outlined"
-             type="text"
-             label="Last Name"
-             name="lastName"
-           />
-<ErrorMessage
-             name="lastName"
-             component="div"
-             className="errmsg"
-           />
-</Box>
-<ErrorMessage
-           name="general"
-           component="p"
-           className="errmsg"
-           aria-live="assertive"
-         />
-<Button
-variant="contained"
-color="primary"
-type="submit"
-disabled={isSubmitting || isLoading}
-style={{ backgroundColor: theme.palette.primary.dark }}
->
-{isSubmitting ? "Loading" : "Register"}
-</Button>
-</Form>
-)}
-</Formik>
-</Box>
-);
+                className="errmsg"
+              />
+            </Box>
+            <Box mb={2}>
+              <Field
+                as={TextField}
+                fullWidth
+                variant="outlined"
+                type="text"
+                label="First Name"
+                name="firstName"
+              />
+              <ErrorMessage
+                name="firstName"
+                component="div"
+                className="errmsg"
+              />
+            </Box>
+            <Box mb={2}>
+              <Field
+                as={TextField}
+                fullWidth
+                variant="outlined"
+                type="text"
+                label="Last Name"
+                name="lastName"
+              />
+              <ErrorMessage
+                name="lastName"
+                component="div"
+                className="errmsg"
+              />
+            </Box>
+            <ErrorMessage
+              name="general"
+              component="p"
+              className="errmsg"
+              aria-live="assertive"
+              style={{ color: "red" }}
+            />
+            {status && (
+              <p className="errmsg" aria-live="assertive" style={{ color: "red" }}>
+                {status}
+              </p>
+            )}
+            <Button
+              variant="contained"
+              color="primary"
+              type="submit"
+              disabled={isSubmitting || isLoading}
+              style={{ backgroundColor: theme.palette.primary.dark }}
+            >
+              {isSubmitting ? "Loading" : "Register"}
+            </Button>
+          </Form>
+        )}
+      </Formik>
+    </Box>
+  );
 }

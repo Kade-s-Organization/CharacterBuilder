@@ -17,6 +17,8 @@ public interface UserRepository
 
     //    I was actually very confused trying to figure out where this gets implemented. It turns out that if you use a specific naming convention, Spring Data Jpa can automatically implement these methods. For example, since the generic type of JpaRepository is User, it knows that user has the column email so it knows how to do findByEmail.
     Optional<User> findByUsername(String username);
+    boolean existsByUsername(String username);
+
 
 
 //    in the tutorial it uses this code for a CrudRepository. Im trying to see if above works the same, though i may need the query annotation.

@@ -94,7 +94,7 @@ const LandingPage = () => {
             a D&D Beyond-like interface, giving you the best of both worlds. Start
             playing your favorite class variants without limitations today!
           </Description>
-          <Message>Welcome Back, {user}!</Message>
+          <Message>Welcome, {user}!</Message>
           <ButtonContainer>
             <Button onClick={handleContinueToDashboard}>Continue to Dashboard</Button>
           </ButtonContainer>

@@ -22,7 +22,7 @@ export default function Login() {
       dispatch(setCredentials({ ...userData, user: values.email }));
       navigate(-1);
     } catch (err) {
-      if (!err?.status) {
+      if (!!err?.status) {
         setStatus("No Server Response");
       } else if (err.status === 400) {
         setStatus("Missing Username or Password");
@@ -66,7 +66,7 @@ export default function Login() {
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        {({ isSubmitting }) => (
+        {({ isSubmitting, status }) => (
           <Form>
             <Typography variant="h4" align="center" gutterBottom>
               Login
@@ -103,6 +103,11 @@ export default function Login() {
               className="errmsg"
               aria-live="assertive"
             />
+            {status && (
+              <p className="errmsg" aria-live="assertive" style={{ color: "red" }}>
+                {status}
+              </p>
+            )}
             <Button
               variant="contained"
               color="primary"
