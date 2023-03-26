@@ -12,13 +12,14 @@ import { ColorModeContext, useMode } from "../theme";
 import img from "../common/assets/loginBackground.png";
 import { useSelector } from "react-redux";
 import LandingPage from "../common/pages/landingPage";
+import Register from "features/auth/RegisterPage";
 
 export default function App() {
   const authenticated = useSelector((state) => state.auth.token);
   const [theme, colorMode] = useMode();
   const location = useLocation();
   const backgroundImage =
-    location.pathname === "/login" || location.pathname === "/"
+    location.pathname === "/login" || location.pathname === "/" || location.pathname === "/register"
       ? `url(${img})`
       : "";
 
@@ -36,7 +37,7 @@ export default function App() {
             backgroundRepeat: "repeat",
           }}
         >
-          {location.pathname === "/login" || location.pathname === "/" ? (
+          {location.pathname === "/login" || location.pathname === "/" || location.pathname === "/register" ? (
             <></>
           ) : (
             <Sidebar />
@@ -48,6 +49,12 @@ export default function App() {
                 path="/login"
                 element={
                   authenticated ? <Navigate to="/dashboard" /> : <Login />
+                }
+              />
+              <Route
+                path="/register"
+                element={
+                  authenticated ? <Navigate to="/dashboard" /> : <Register />
                 }
               />
               <Route path="/" element={<LandingPage />} />

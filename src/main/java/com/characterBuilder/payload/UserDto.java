@@ -17,8 +17,8 @@ import javax.validation.constraints.NotNull;
 @Setter
 public class UserDto {
     // TODO for some reason this breaks the registration
-//    @NotNull
-//    @NotEmpty
+    @NotNull
+    @NotEmpty
     private String username;
     @NotNull
     @NotEmpty
@@ -35,5 +35,4 @@ public class UserDto {
 
     // TODO create custom validation annotation https://www.baeldung.com/registration-with-spring-mvc-and-spring-security/# 5.2
     private Role role;
-
 }

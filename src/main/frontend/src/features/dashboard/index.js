@@ -45,10 +45,15 @@ export default function Home() {
 
   const handleLogout = () => {
     dispatch(logout());
-    navigate("/");
+    setGreeting("");
   };
   const handleLogin = () => {
     navigate("/login");
+    setGreeting("");
+  };
+  const handleRegister = () => {
+    navigate("/register");
+    setGreeting("");
   };
 
   return (
@@ -60,7 +65,10 @@ export default function Home() {
           <Button onClick={handleGetGreeting}>Display Greeting:</Button>
         </>
       ) : (
+        <>
         <Button onClick={handleLogin}>Login</Button>
+        <Button onClick={handleRegister}>Register</Button>
+        </>
       )}
       {greeting !== "" && <h1>{greeting}</h1>}
     </Box>
