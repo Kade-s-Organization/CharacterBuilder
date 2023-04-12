@@ -17,6 +17,8 @@ import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import { useSelector } from "react-redux";
+import jwtDecode from 'jwt-decode';
+
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
@@ -36,6 +38,9 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
 const Sidebar = () => {
   const theme = useTheme();
   const user = useSelector((state) => state.auth.user);
+  const token = useSelector((state) => state.auth.token);
+  //use jwtDecode and useSelector to get the role from state.auth.token
+  // const role = jwtDecode(token).role;
   const colors = tokens;
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
@@ -104,10 +109,10 @@ const Sidebar = () => {
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
-                  Kade Hennacy
+                  {user}
                 </Typography>
                 <Typography variant="h5" color={colors.success[500]}>
-                  Administrator
+                  {/* {role} */}
                 </Typography>
               </Box>
             </Box>
@@ -116,7 +121,7 @@ const Sidebar = () => {
           <Box paddingLeft={isCollapsed ? undefined : "10%"}>
             <Item
               title="Dashboard"
-              to="/"
+              to="/dashboard"
               icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}

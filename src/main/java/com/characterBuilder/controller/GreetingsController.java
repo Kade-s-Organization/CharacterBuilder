@@ -14,7 +14,7 @@ import java.security.Principal;
 public class GreetingsController {
     @GetMapping
     public ResponseEntity<GreetingResponse> sayHello() {
-        GreetingResponse response = new GreetingResponse("Hello from our API");
+        GreetingResponse response = new GreetingResponse("Hello0000 from our API");
         return ResponseEntity.ok(response);
     }
 
