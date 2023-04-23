@@ -46,6 +46,7 @@ public class JwtTokenProvider {
         final Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);
     }
+
     public Claims extractAllClaims(String token) {
         return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
     }
@@ -58,30 +59,24 @@ public class JwtTokenProvider {
         Map<String, Object> claims = new HashMap<>();
 
         Collection<? extends GrantedAuthority> roles = userDetails.getAuthorities();
+        String role = roles.contains(new SimpleGrantedAuthority("ADMIN")) ? "ADMIN" : "USER";
 
-        if (roles.contains(new SimpleGrantedAuthority("ADMIN"))) {
-            claims.put("isAdmin", true);
-        }
-        if (roles.contains(new SimpleGrantedAuthority("USER"))) {
-            claims.put("isUser", true);
-        }
+        claims.put("role", role);
 
         return createAccessToken(claims, userDetails.getUsername());
     }
+
     public String generateRefreshToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
 
         Collection<? extends GrantedAuthority> roles = userDetails.getAuthorities();
+        String role = roles.contains(new SimpleGrantedAuthority("ADMIN")) ? "ADMIN" : "USER";
 
-        if (roles.contains(new SimpleGrantedAuthority("ADMIN"))) {
-            claims.put("isAdmin", true);
-        }
-        if (roles.contains(new SimpleGrantedAuthority("USER"))) {
-            claims.put("isUser", true);
-        }
+        claims.put("role", role);
 
         return createRefreshToken(claims, userDetails.getUsername());
     }
+
 
     public Map<String, String> getTokensFromUserDetails(UserDetails userDetails) {
         String access_token = generateAccessToken(userDetails);
@@ -98,6 +93,7 @@ public class JwtTokenProvider {
                 .setExpiration(new Date(System.currentTimeMillis() + jwtExpirationDateInMs))
                 .signWith(SignatureAlgorithm.HS256, secret).compact();
     }
+
     private String createRefreshToken(Map<String, Object> claims, String subject) {
         // Expires in 10 hours
         return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
@@ -130,19 +126,11 @@ public class JwtTokenProvider {
     public List<SimpleGrantedAuthority> getRolesFromToken(String token) {
         Claims claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
 
-        List<SimpleGrantedAuthority> roles = null;
-
-        Boolean isAdmin = claims.get("isAdmin", Boolean.class);
-        Boolean isUser = claims.get("isUser", Boolean.class);
-
-        if (isAdmin != null && isAdmin) {
-            roles = Arrays.asList(new SimpleGrantedAuthority("ADMIN"));
+        String role = claims.get("role", String.class);
+        if (role != null) {
+            return Collections.singletonList(new SimpleGrantedAuthority(role));
+        } else {
+            return Collections.emptyList();
         }
-
-        if (isUser != null && isAdmin) {
-            roles = Arrays.asList(new SimpleGrantedAuthority("USER"));
-        }
-        return roles;
-
     }
 }

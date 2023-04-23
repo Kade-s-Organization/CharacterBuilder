@@ -6,7 +6,6 @@ import { logout } from "../auth/auth";
 import { Box } from "@mui/material";
 import { useGetGreetingsQuery } from "./greetings";
 
-//chatgpt made this i used it on the landing page
 const Button = styled.button`
   margin-top: 1rem;
   margin-right: 1rem;
@@ -36,11 +35,18 @@ export default function Home() {
   const token = useSelector((state) => state.auth.token);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { data: greetings, isLoading, isError } = useGetGreetingsQuery();
-  
+  const { data: greetings, isLoading, isError, refetch } = useGetGreetingsQuery(undefined);
 
-  const handleGetGreeting = () => {
-    setGreeting("Greeting: " + greetings.message);
+
+
+  const handleGetGreeting = async () => {
+    try {
+      const result = await refetch();
+
+      setGreeting("Greeting: " + result.data.message);
+    } catch (error) {
+      console.error("Error fetching greeting:", error);
+    }
   };
 
   const handleLogout = () => {
@@ -66,8 +72,8 @@ export default function Home() {
         </>
       ) : (
         <>
-        <Button onClick={handleLogin}>Login</Button>
-        <Button onClick={handleRegister}>Register</Button>
+          <Button onClick={handleLogin}>Login</Button>
+          <Button onClick={handleRegister}>Register</Button>
         </>
       )}
       {greeting !== "" && <h1>{greeting}</h1>}

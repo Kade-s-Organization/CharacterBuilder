@@ -4,7 +4,7 @@ import { apiSlice } from "../api/api";
 const greetingsApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         getGreetings: builder.query({
-            query: () => "/api/v1/greetings",
+            query: () => `/api/v1/greetings`
         }),
     }),
 });

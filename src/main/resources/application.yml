@@ -16,7 +16,10 @@ spring:
         format_sql: true
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+  devtools:
+    restart:
+     enabled: true
 jwt:
   secret: sZfb1fyYXz19DJ5DAIh07OfDh0NH9SsOf3TP0nbB
-  expirationDateInMs: 200000
-  refreshExpirationDateInMs: 300000
+  expirationDateInMs: 2000000
+  refreshExpirationDateInMs: 3000000
