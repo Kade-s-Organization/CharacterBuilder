@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Formik, Form, Field } from 'formik';
-import { Button, TextField, Box, FormControlLabel, Checkbox, Switch, MenuItem, Select, Grid } from '@mui/material';
+import { Button, TextField, Box, FormControlLabel, Switch, MenuItem, Select, Grid } from '@mui/material';
 import * as Yup from "yup";
 import { updateField, updatePreference } from './character';
 
@@ -58,20 +58,28 @@ const CharacterHome = () => {
                                     />
                                 </Grid>
 
+
+                                <Grid item xs={12}>
+                                    <h2>Character Preferences</h2>
+                                    <h3>Sources</h3>
+                                    <p>Allow or restrict sources to be used for this character</p>
+                                </Grid>
+
                                 {/* Sources */}
                                 <Grid item xs={12}>
                                     <FormControlLabel
-                                        control={<Field component={Checkbox} name="preferences.useHomebrewContent" />}
+                                        control={<Field component={Switch} name="preferences.useHomebrewContent" checked={values.preferences.useHomebrewContent} />}
                                         label="Use Homebrew Content"
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
                                     <FormControlLabel
-                                        control={<Field component={Checkbox} name="preferences.criticalRoleContent" />}
+                                        control={<Field component={Switch} name="values.preferences.useCriticalRoleContent" checked={values.preferences.useCriticalRoleContent} />}
                                         label="Use Critical Role Content"
                                     />
                                 </Grid>
                                 {/* Add more sources here */}
+
 
                                 {/* Dice Rolling */}
                                 <Grid item xs={12}>
@@ -84,13 +92,13 @@ const CharacterHome = () => {
                                 {/* Optional Features */}
                                 <Grid item xs={12}>
                                     <FormControlLabel
-                                        control={<Field component={Checkbox} name="preferences.enableOptionalClassFeatures" />}
+                                        control={<Field component={Switch} name="preferences.enableOptionalClassFeatures" />}
                                         label="Enable Optional Class Features"
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
                                     <FormControlLabel
-                                        control={<Field component={Checkbox} name="preferences.enableOptionalOrigins" />}
+                                        control={<Field component={Switch} name="preferences.enableOptionalOrigins" />}
                                         label="Enable Optional Origins"
                                     />
                                 </Grid>
@@ -102,9 +110,10 @@ const CharacterHome = () => {
                                         component={Select}
                                         name="preferences.progressionType"
                                         label="Advancement Type"
+                                        value={values.preferences.progressionType}
                                     >
-                                        <MenuItem value="Milestone">Milestone</MenuItem>
-                                        <MenuItem value="XP">XP</MenuItem>
+                                        <MenuItem value={1}>Milestone</MenuItem>
+                                        <MenuItem value={2}>XP</MenuItem>
                                     </Field>
                                 </Grid>
 
@@ -115,21 +124,21 @@ const CharacterHome = () => {
                                         name="preferences.hitPointType"
                                         label="Hit Point Type"
                                     >
-                                        <MenuItem value="Fixed">Fixed</MenuItem>
-                                        <MenuItem value="Manual">Manual</MenuItem>
+                                        <MenuItem value={1}>Fixed</MenuItem>
+                                        <MenuItem value={2}>Manual</MenuItem>
                                     </Field>
                                 </Grid>
 
                                 {/* Use Prerequisites */}
                                 <Grid item xs={12}>
                                     <FormControlLabel
-                                        control={<Field component={Checkbox} name="preferences.enforceFeatRules" />}
+                                        control={<Field component={Switch} name="preferences.enforceFeatRules" />}
                                         label="Enforce Feat Rules"
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
                                     <FormControlLabel
-                                        control={<Field component={Checkbox} name="preferences.enforceMulticlassRules" />}
+                                        control={<Field component={Switch} name="preferences.enforceMulticlassRules" />}
                                         label="Enforce Multiclass Rules"
                                     />
                                 </Grid>
@@ -150,9 +159,9 @@ const CharacterHome = () => {
                                         name="preferences.encumbranceType"
                                         label="Encumbrance Type"
                                     >
-                                        <MenuItem value="Use Encumbrance">Use Encumbrance</MenuItem>
-                                        <MenuItem value="No Encumbrance">No Encumbrance</MenuItem>
-                                        <MenuItem value="Variant Encumbrance">Variant Encumbrance</MenuItem>
+                                        <MenuItem value={1}>Use Encumbrance</MenuItem>
+                                        <MenuItem value={2}>No Encumbrance</MenuItem>
+                                        <MenuItem value={3}>Variant Encumbrance</MenuItem>
                                     </Field>
                                 </Grid>
 
@@ -170,8 +179,8 @@ const CharacterHome = () => {
                                         name="preferences.abilityScoreDisplayType"
                                         label="Ability Score/Modifier Display"
                                     >
-                                        <MenuItem value="Modifiers Top">Modifiers Top</MenuItem>
-                                        <MenuItem value="Scores Top">Scores Top</MenuItem>
+                                        <MenuItem value={1}>Modifiers Top</MenuItem>
+                                        <MenuItem value={2}>Scores Top</MenuItem>
                                     </Field></Grid>
 
                                 {/* Character Privacy */}
@@ -180,9 +189,10 @@ const CharacterHome = () => {
                                         component={Select}
                                         name="preferences.privacyType"
                                         label="Character Privacy"
+                                        value={values.preferences.privacyType}
                                     >
-                                        <MenuItem value="Private">Private</MenuItem>
-                                        <MenuItem value="Public">Public</MenuItem>
+                                        <MenuItem value={1}>Private</MenuItem>
+                                        <MenuItem value={2}>Public</MenuItem>
                                     </Field></Grid>
 
                                 <Grid item xs={12}>
