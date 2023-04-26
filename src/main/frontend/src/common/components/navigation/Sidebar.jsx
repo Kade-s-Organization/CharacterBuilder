@@ -128,8 +128,15 @@ const Sidebar = () => {
             />
 
             <Typography variant="h6" sx={{ m: "15px 0 5px 20px" }}>
-              Data
+              Character
             </Typography>
+            <Item
+              title="Home"
+              to="/character"
+              icon={<HomeOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
             <Item
               title="Race"
               to="/team"

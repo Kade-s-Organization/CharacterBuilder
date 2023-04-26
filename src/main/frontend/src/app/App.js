@@ -13,6 +13,7 @@ import img from "../common/assets/loginBackground.png";
 import { useSelector } from "react-redux";
 import LandingPage from "../common/pages/landingPage";
 import Register from "features/auth/RegisterPage";
+import CharacterHome from "features/character";
 
 export default function App() {
   const authenticated = useSelector((state) => state.auth.token);
@@ -59,6 +60,7 @@ export default function App() {
               />
               <Route path="/" element={<LandingPage />} />
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/character" element={<CharacterHome />} />
               <Route element={<ProtectRoutes />}>
                 {/* Where things like account and character list go */}
               </Route>
