@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "name": "Core D&D",
+        "description": "The core rulebooks that form the foundation of Dungeons & Dragons.",
+        "enabledByDefault": true
+    },
+    {
+        "id": 2,
+        "name": "Critical Role",
+        "description": "Content related to the Critical Role universe and campaign settings.",
+        "enabledByDefault": false
+    },
+    {
+        "id": 3,
+        "name": "Magic: The Gathering",
+        "description": "Content related to the Magic: The Gathering multiverse.",
+        "enabledByDefault": false
+    },
+    {
+        "id": 4,
+        "name": "Eberron",
+        "description": "Content related to the Eberron campaign setting.",
+        "enabledByDefault": false
+    },
+    {
+        "id": 5,
+        "name": "Dragonlance",
+        "description": "Content related to the Dragonlance campaign setting.",
+        "enabledByDefault": false
+    },
+    {
+        "id": 6,
+        "name": "Noncore D&D",
+        "description": "Additional D&D content that is not part of the core rulebooks.",
+        "enabledByDefault": false
+    }
+]

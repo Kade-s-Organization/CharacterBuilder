@@ -2,7 +2,8 @@ import { configureStore } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
 import { apiSlice } from "../features/api/api";
-import characterReducer from "../features/character/character";
+import characterReducer, { updateField, updatePreference } from "../features/character/character";
+import rulesReducer, { selectSourceCategories, selectSources } from "features/rules/rules";
 import { combineReducers } from "redux";
 import auth from "../features/auth/auth";
 
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   auth,
   [apiSlice.reducerPath]: apiSlice.reducer,
   character: characterReducer,
+  rules: rulesReducer,
 });
 
 

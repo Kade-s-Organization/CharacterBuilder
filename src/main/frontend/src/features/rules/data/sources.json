@@ -1,0 +1,88 @@
+[
+    {
+        "id": 1,
+        "sourceCategoryId": 1,
+        "name": "DMG",
+        "description": "Dungeon Master's Guide"
+    },
+    {
+        "id": 2,
+        "sourceCategoryId": 1,
+        "name": "MM",
+        "description": "Monster Manual"
+    },
+    {
+        "id": 3,
+        "sourceCategoryId": 1,
+        "name": "PHB",
+        "description": "Player's Handbook"
+    },
+    {
+        "id": 4,
+        "sourceCategoryId": 2,
+        "name": "CRCotN",
+        "description": "Critical Role: Call of the Netherdeep"
+    },
+    {
+        "id": 5,
+        "sourceCategoryId": 3,
+        "name": "MOT",
+        "description": "Mythic Odysseys of Theros"
+    },
+    {
+        "id": 6,
+        "sourceCategoryId": 3,
+        "name": "GGR",
+        "description": "Guildmasters' Guide to Ravnica"
+    },
+    {
+        "id": 7,
+        "sourceCategoryId": 4,
+        "name": "ERLW",
+        "description": "Eberron: Rising from the Last War"
+    },
+    {
+        "id": 8,
+        "sourceCategoryId": 5,
+        "name": "DSotDQ",
+        "description": "Dragonlance: Shadow of the Dragon Queen"
+    },
+    {
+        "id": 9,
+        "sourceCategoryId": 6,
+        "name": "AI",
+        "description": "Acquisitions Incorporated"
+    },
+    {
+        "id": 10,
+        "sourceCategoryId": 6,
+        "name": "AAG",
+        "description": "Astral Adventurer's Guide"
+    },
+    {
+        "id": 11,
+        "sourceCategoryId": 6,
+        "name": "BGDIA",
+        "description": "Baldur's Gate: Descent Into Avernus"
+    },
+    {
+        "id": 12,
+        "sourceCategoryId": 6,
+        "name": "BAM",
+        "description": "Boo's Astral Menagerie"
+    },
+    {
+        "id": 13,
+        "sourceCategoryId": 6,
+        "name": "CM",
+        "description": "Candlekeep Mysteries"
+    },
+    {
+        "id": 14,
+        "sourceCategoryId": 6,
+        "name": "DC",
+        "description": "Divine Contention"
+    },
+    { "id": 15, "sourceCategoryId": 6, "name": "CoS", "description": "Curse of Strahd" }, { "id": 16, "sourceCategoryId": 6, "name": "EET", "description": "Elemental Evil: Trinkets" }, { "id": 17, "sourceCategoryId": 6, "name": "EGW", "description": "Explorer's Guide to Wildemount" }, { "id": 18, "sourceCategoryId": 6, "name": "FTD", "description": "Fizban's Treasury of Dragons" }, { "id": 19, "sourceCategoryId": 6, "name": "GoS", "description": "Ghosts of Saltmarsh" }, { "id": 20, "sourceCategoryId": 6, "name": "HotDQ", "description": "Hoard of the Dragon Queen" }, { "id": 21, "sourceCategoryId": 6, "name": "HftT", "description": "Hunt for the Thessalhydra" }, { "id": 22, "sourceCategoryId": 6, "name": "IDRotF", "description": "Icewind Dale: Rime of the Frostmaiden" }, { "id": 23, "sourceCategoryId": 6, "name": "JttRC", "description": "Journeys through the Radiant Citadel" }, { "id": 24, "sourceCategoryId": 6, "name": "KAGV", "description": "Keys from the Golden Vault" }, { "id": 25, "sourceCategoryId": 6, "name": "LoX", "description": "Light of Xaryxis" }, { "id": 26, "sourceCategoryId": 6, "name": "LMoP", "description": "Lost Mine of Phandelver" }, { "id": 27, "sourceCategoryId": 6, "name": "MPMM", "description": "Mordenkainen Presents: Monsters of the Multiverse" }, { "id": 28, "sourceCategoryId": 6, "name": "MTF", "description": "Mordenkainen's Tome of Foes" }, { "id": 29, "sourceCategoryId": 6, "name": "OotA", "description": "Out of the Abyss" }, { "id": 30, "sourceCategoryId": 6, "name": "PotA", "description": "Princes of the Apocalypse" }, { "id": 31, "sourceCategoryId": 6, "name": "SDW", "description": "Sleeping Dragon's Wake" }, { "id": 32, "sourceCategoryId": 6, "name": "SKT", "description": "Storm King's Thunder" }, { "id": 33, "sourceCategoryId": 6, "name": "SAC", "description": "Strixhaven: A Curriculum of Chaos" }, { "id": 34, "sourceCategoryId": 6, "name": "SCAG", "description": "Sword Coast Adventurer's Guide" }, { "id": 35, "sourceCategoryId": 6, "name": "TAYP", "description": "Tales from the Yawning Portal" }, { "id": 36, "sourceCategoryId": 6, "name": "TCE", "description": "Tasha's Cauldron of Everything" }, { "id": 37, "sourceCategoryId": 6, "name": "RMBRE", "description": "The Lost Dungeon of Rickedness: Big Rick Energy" },
+    { "id": 38, "sourceCategoryId": 6, "name": "RoT", "description": "The Rise of Tiamat" }, { "id": 39, "sourceCategoryId": 6, "name": "TROS", "description": "The Rise of Tiamat Online Supplement" }, { "id": 40, "sourceCategoryId": 6, "name": "WBtW", "description": "The Wild Beyond the Witchlight" }, { "id": 41, "sourceCategoryId": 6, "name": "TOA", "description": "Tomb of Annihilation" }, { "id": 42, "sourceCategoryId": 6, "name": "TOD", "description": "Tyranny of Dragons" }, { "id": 43, "sourceCategoryId": 6, "name": "VGM", "description": "Volo's Guide to Monsters" }, { "id": 44, "sourceCategoryId": 6, "name": "WDH", "description": "Waterdeep: Dragon Heist" }, { "id": 45, "sourceCategoryId": 6, "name": "WDMM", "description": "Waterdeep: Dungeon of the Mad Mage" }, { "id": 46, "sourceCategoryId": 6, "name": "XGE", "description": "Xanathar's Guide to Everything" }
+]
